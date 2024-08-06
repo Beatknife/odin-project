@@ -1,0 +1,46 @@
+body {
+    background-color: antiquewhite;
+}
+
+h1 {
+    text-align: center;
+    background-color: aqua;
+    font-family: "Brush Script MT", cursive;
+    border: 3px solid;
+    padding: 10px;
+    border-radius: 20px;
+
+}
+
+.choiceBtn {
+    line-height: 30px;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+#gameDiv {
+    font-family: "Brush Script MT", cursive;
+    border: 3px solid;
+    border-radius: 25px;
+    padding: 10px;
+    background-color: lightgreen;
+    text-align: center;
+}
+
+#playerText, #playerScoreDisplay {
+    color: blue;
+}
+
+#computerText, #computerScoreDisplay {
+    color: red;
+}
+
+.scoreDisplay {
+    font-size: 20px;
+}
+
+button {
+    background-color:rgb(159, 86, 255);
+    color: white;
+    border-radius: 10px;
+}
