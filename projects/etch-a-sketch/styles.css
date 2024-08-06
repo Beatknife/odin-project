@@ -1,0 +1,141 @@
+body {
+    margin: 10px;
+    background-color: hsl(0, 0%, 95%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#heading {
+    font-family: Arial, sans-serif;
+    font-size: 3rem;
+    color: hsl(0, 0%, 20%)
+}
+
+#canvas {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.layout {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 30px
+}
+
+#colors {
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    height: 600px;
+    justify-content: space-around;
+}
+
+#colors > button {
+    border: none;
+    cursor: pointer;
+}
+
+#black {
+    background-color: black;
+}
+
+#white {
+    background-color: white;
+}
+
+#red {
+    background-color: red;
+}
+
+#orange {
+    background-color: orange;
+}
+
+#yellow {
+    background-color: yellow;
+}
+
+#lightgreen {
+    background-color: lightgreen;
+}
+
+#turquoise {
+    background-color: turquoise;
+}
+
+#blue {
+    background-color: blue;
+}
+
+#mediumpurple {
+    background-color: mediumpurple;
+}
+
+#rainbow {
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%);
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.color {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.divSquares {
+    box-sizing: border-box;
+}
+
+#generateBtn {
+    background-color: hsl(160, 100%, 65%);
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#generateBtn:hover {
+    background-color: hsl(160, 100%, 75%);
+}
+
+#generateBtn:active {
+    background-color: hsl(160, 100%, 80%);
+}
+
+#clearBtn {
+    background-color: hsl(283, 100%, 65%);
+    color: white;
+    font-size: 1.5rem;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 200px;
+}
+
+#clearBtn:hover {
+    background-color: hsl(283, 100%, 75%);
+}
+
+#clearBtn:active {
+    background-color: hsl(283, 100%, 80%);
+}
+
+footer {
+    font-weight: bold;
+    font-size: 20px;
+    color: hsl(0, 0%, 20%);
+    margin-top: 20px;
+}
