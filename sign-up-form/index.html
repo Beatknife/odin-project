@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Clone - Sign Up</title>
+</head>
+<body>
+    <div class="container">
+        <div class="brand">
+            <div class="logo">
+                <img src="./images/odin-lined.png" alt="logo">
+                <span>CLONE</span>
+            </div>
+            <p>Photo by <a href="./images/jonathan-van-den-broek-TecUcF21J0o-unsplash.jpg">Jonathan van den Broek</a> on <a href="https://unsplash.com/photos/top-view-of-rive-between-trees-TecUcF21J0o?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>
+        </div>
+        <div class="content">
+            <p>This is not a real online service! You know this is a clone from odin project and even the original is not a real service. Still, you can try to sign up below. Sign up <em>now</em> to get started.<br><br>
+            You <em>know</em> you want to.</p>
+            <form action="#" method="post" id="form">
+                <p>Let' do this!</p>
+                <div class="info">
+                    <div>
+                        <label for="fname">FIRST NAME</label>
+                        <input type="text" name="fname" id="fname" required>
+                    </div>
+                    <div>
+                        <label for="lname">LAST NAME</label>
+                        <input type="text" name="lname" id="lname" required>
+                    </div>
+                    <div>
+                        <label for="email">EMAIL</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    <div>
+                        <label for="phone">PHONE NUMBER</label>
+                        <input type="tel" name="phone" id="phone" required>
+                    </div>
+                    <div>
+                        <label for="password">PASSWORD</label>
+                        <input type="password" name="password" id="password" required>
+                        <div id="no-match"></div>
+                    </div>
+                    <div>
+                        <label for="confirm-password">CONFIRM PASSWORD</label>
+                        <input type="password" name="confirm-password" id="confirm-password" required>
+                    </div>
+                </div>
+            </form>
+            <button type="submit" form="form">Create Account</button>
+            <p>Already have an account? <a href="#">Log in</a></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                document.getElementById('no-match').textContent = "*Passwords do not match"
+            }
+        });
+    </script>
+</body>
+</html>

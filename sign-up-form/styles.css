@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'norse';
+    src: url('./fonts/Norse-Bold.otf');
+}
+
+body {
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+    font-family: "Verdana", Geneva, Tahoma, sans-serif;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+}
+
+/* RIGHT SIDE */
+
+.content {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form {
+    width: 100%;
+    background-color: white;
+    padding: 0 40px 0 40px;
+    font-size: 1rem;
+    height: 35%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.content > p:first-child {
+    padding: 15px 40px 30px 40px;
+    font-size: 1.75rem;
+    width: 80%;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+form p:first-child {
+    font-size: 1.25rem;
+    margin: 0;
+    padding: 15px 0 0 0;
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 30px;
+    row-gap: 15px;
+    padding: 15px 0 0 0;
+}
+
+label {
+    display: block;
+    width: 370px;
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+}
+
+input {
+    border: 1px solid #E5E7EB;
+    border-radius: 5px;
+    line-height: 25px;
+    font-size: 20px;
+    padding: 4px;
+    width: 80%;
+    font-family: sans-serif;
+}
+
+input:user-invalid {
+    border: 1px solid rgb(190, 36, 49);
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+input:focus {
+    border: 1px solid rgb(29, 89, 255);
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+button {
+    margin: 35px 40px 35px 40px;
+    padding: 8px auto;
+    font-size: 1.25rem;
+    width: 250px;
+    height: 60px;
+    background-color: #596D48;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.content p:last-child {
+    margin-left: 40px;
+    margin: 0 40px;
+    padding: 0;
+    font-size: 1.25rem;
+
+}
+
+.content a:last-child {
+    color: #596D48;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+#no-match {
+    color: red;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+/* LEFT SIDE */
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 70px;
+    gap: 10px;
+    color: white;
+    background: #0e0e0eaf;
+    padding: 30px 60px;
+    position: absolute;
+    top: 170px;
+    font-family: "norse";
+}
+
+.brand {
+    background: url(./images/jonathan-van-den-broek-TecUcF21J0o-unsplash.jpg);
+    height: 100vh;
+    width: 35%;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.brand img {
+    width: 80px;
+    height: auto;
+}
+
+.brand p {
+    position: absolute;
+    bottom: 8px;
+    padding: 5px;
+    margin: 0;
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.brand a {
+    color: rgb(255, 255, 255);
+}
