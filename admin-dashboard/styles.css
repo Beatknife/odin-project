@@ -3,6 +3,10 @@
     src: url(./fonts/Roboto/Roboto-Black.ttf);
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 4fr;
@@ -11,7 +15,7 @@
 /* sidebar */
 
 .sidebar {
-    background-color: rgb(0, 174, 255);
+    background-color: rgb(44, 137, 217);
     color: white;
     font-weight: bold;
     font-family: "roboto";
@@ -24,15 +28,34 @@
     flex-direction: column;
 }
 
-.sidebar img {
-    max-width: 50px;    
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    padding: 0 40px 10px 15px;
+}
+
+.logo img {
+    width: 40px;  
+}
+
+.sidebar ul img {
+    width: 20px;
 }
 
 .sidebar ul {
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.sidebar li {
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
 
 /* header */
