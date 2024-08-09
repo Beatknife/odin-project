@@ -9,6 +9,7 @@
 
 body {
     margin: 0;
+    overflow: auto;
 }
 
 .container {
@@ -209,4 +210,15 @@ input[type="search"] {
     gap: 20px;
     padding-right: 20px;
     align-self: flex-end;
+}
+
+.announcements{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 30px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.announcements hr {
+    border: 1px solid rgb(230, 235, 245);
 }
