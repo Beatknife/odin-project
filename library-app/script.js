@@ -1,4 +1,21 @@
 const bookContainer = document.getElementById("book-container");
+const openModal = document.getElementById("add-btn")
+const closeModal = document.getElementById("close-btn")
+const modal = document.getElementById("modal")
+
+openModal.addEventListener("click", () => {
+    modal.showModal();
+})
+
+closeModal.addEventListener("click", () => {
+    modal.closest();
+})
+
+modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.close();
+    }
+});
 
 const myLibrary = ["book1", "book2", "book3"];
 
@@ -27,3 +44,4 @@ function addBookToLibrary(){
         document.body.appendChild(bookDiv)
     }
 }
+

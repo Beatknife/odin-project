@@ -2,13 +2,21 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: hsl(205, 59%, 90%);
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    flex: 1;
+    background-color: hsl(205, 59%, 90%);
 }
 
 header {
+    display: flex;
+    gap: 10px;
     background-color: white;
     margin: 0;
     padding: 10px 50px;
@@ -16,15 +24,23 @@ header {
 }
 
 main {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
 }
 
-.add-btn {
+main > p {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 50px;
+    display: none;
+}
+
+#add-btn {
     background-color: white;
-    margin: 30px;
+    margin: 30px 30px 30px 30px;
     padding: 10px 20px;
     border: none;
     font-size: 1.25rem;
@@ -34,7 +50,7 @@ main {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-.add-btn:hover {
+#add-btn:hover {
     background-color: rgb(241, 241, 241);
 }
 
@@ -58,9 +74,18 @@ main {
 }
 
 .card p {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    margin: 15px;
+}
+
+.card #title {
+    text-transform: uppercase;
     font-weight: bold;
-    margin: 10px;
+}
+
+.card #author {
+    font-style: italic;
+    text-transform: capitalize;
 }
 
 .card button {
@@ -71,12 +96,32 @@ main {
     font-size: 1.2em;
     color: white;
     font-weight: bold;
-    background-color: hsl(103, 100%, 79%);
+    cursor: pointer;
+}
+
+.card #read-btn {
+    background-color: hsl(103, 100%, 70%);
+}
+
+.card #read-btn:hover {
+    background-color: hsl(103, 100%, 75%);
+}
+
+.card #read-btn:active {
+    background-color: hsl(103, 100%, 80%);
 }
 
 .card #remove-btn {
     border-radius: 0 0 10px 10px;
-    background-color: hsl(0, 100%, 79%);
+    background-color: hsl(0, 100%, 70%);
+}
+
+.card #remove-btn:hover {
+    background-color: hsl(0, 100%, 75%);
+}
+
+.card #remove-btn:active {
+    background-color: hsl(0, 100%, 80%);
 }
 
 footer {
@@ -87,4 +132,81 @@ footer {
     font-size: 1.25rem;
     width: 100%;
     margin-top: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 20px;
+    border: none;
+    background-color: rgb(244, 244, 244);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+}
+
+form input {
+    font-size: 1.55rem;
+    border-radius: 10px;
+    line-height: 2.5rem;
+    padding: 5px 10px;
+    border: none;
+    width: 100%;
+    text-decoration: none;
+}
+
+form #close-btn {
+    border: none;
+    background-color: rgb(244, 244, 244);
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: bold;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    color: black;
+}
+
+form button {
+    font-size: 1.5rem;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 300px;
+    height: 50px;
+    cursor: pointer;
+    background-color: hsl(103, 100%, 70%);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-container label {
+    margin: 0;
+}
+
+.checkbox-container input {
+    margin: 0;
+}
+
+dialog {
+    border: none;
+    padding: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
 }
