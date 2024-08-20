@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="./images/book-open-blank-variant-outline-white.svg">
-    <script src="script.js" defer></script>
     <title>Library App</title>
 </head>
 <body>
@@ -14,32 +13,27 @@
         <h1>virtual library</h1>
     </header>
     <main>
-        <p>No books yet. Add a book from the button below</p>
+        <p id="no-books">No books yet. You can add books from the button below.</p>
         <button id="add-btn">+ Add Book</button>
-        <div class="book-container">
-            <div class="card">
-                <p id="title">title</p>
-                <p id="author">author</p>
-                <p id="pages">pages</p>
-                <button id="read-btn">Read</button>
-                <button id="remove-btn">Remove</button>
-            </div>
-            <dialog id="modal" id="modal">
-                <form method="dialog" class="form">
-                    <button id="close-btn">x</button>
-                    <p>Add new book</p>
-                    <input type="text" name="title" id="title" placeholder="Title">
-                    <input type="text" name="author" id="author" placeholder="Author">
-                    <input type="number" name="pages" id="pages" placeholder="Pages" min="0" max="3000">
-                    <div class="checkbox-container">
-                        <label for="read">Read</label>
-                        <input type="checkbox" name="read" id="read">
-                    </div>
-                    <button type="submit" id="add-book">Add Book</button>
-                </form>
-            </dialog>
+        <div class="book-container" id="book-container">
+
         </div>
+        <dialog id="modal" id="modal">
+            <form method="dialog" class="form" id="form">
+                <button id="close-btn">x</button>
+                <p>Add new book</p>
+                <input type="text" name="title" id="title" placeholder="Title" required>
+                <input type="text" name="author" id="author" placeholder="Author" required>
+                <input type="number" name="pages" id="pages" placeholder="Pages" min="0" max="3000" required>
+                <div class="checkbox-container">
+                    <label for="read">Read</label>
+                    <input type="checkbox" name="read" id="read">
+                </div>
+                <button type="submit" id="add-book">Add Book</button>
+            </form>
+        </dialog>
     </main>
     <footer>Yahya BULAT &copy 2024</footer>
+    <script src="script.js"></script>
 </body>
 </html>

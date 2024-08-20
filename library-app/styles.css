@@ -34,12 +34,19 @@ main {
 main > p {
     font-size: 30px;
     font-weight: bold;
-    margin: 50px;
-    display: none;
+    margin: 30px 50px 0 50px;
+    display: block;
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 #add-btn {
-    background-color: white;
+    background-color: hsl(209, 100%, 65%);
+    color: white;
     margin: 30px 30px 30px 30px;
     padding: 10px 20px;
     border: none;
@@ -51,7 +58,7 @@ main > p {
 }
 
 #add-btn:hover {
-    background-color: rgb(241, 241, 241);
+    background-color: hsl(209, 100%, 70%);
 }
 
 .book-container {
@@ -60,7 +67,7 @@ main > p {
     align-items: center;
     justify-content: center;
     gap: 30px;
-    width: 900px;
+    width: 1000px;
 }
 
 .card {
@@ -78,12 +85,12 @@ main > p {
     margin: 15px;
 }
 
-.card #title {
+.card .title {
     text-transform: uppercase;
     font-weight: bold;
 }
 
-.card #author {
+.card .author {
     font-style: italic;
     text-transform: capitalize;
 }
@@ -99,28 +106,32 @@ main > p {
     cursor: pointer;
 }
 
-.card #read-btn {
+.card .read-btn {
     background-color: hsl(103, 100%, 70%);
 }
 
-.card #read-btn:hover {
+.card .read-btn:hover {
     background-color: hsl(103, 100%, 75%);
 }
 
-.card #read-btn:active {
+.card .read-btn:active {
     background-color: hsl(103, 100%, 80%);
 }
 
-.card #remove-btn {
+.not-read-btn {
+    background-color: rgb(199, 199, 199);
+}
+
+.card .remove-btn {
     border-radius: 0 0 10px 10px;
     background-color: hsl(0, 100%, 70%);
 }
 
-.card #remove-btn:hover {
+.card .remove-btn:hover {
     background-color: hsl(0, 100%, 75%);
 }
 
-.card #remove-btn:active {
+.card .remove-btn:active {
     background-color: hsl(0, 100%, 80%);
 }
 
