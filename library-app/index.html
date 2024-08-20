@@ -13,7 +13,7 @@
         <h1>virtual library</h1>
     </header>
     <main>
-        <p id="no-books">No books yet. You can add books from the button below.</p>
+        <p id="no-books">No books in your library yet. You can add books from the button below.</p>
         <button id="add-btn">+ Add Book</button>
         <div class="book-container" id="book-container">
 
@@ -22,9 +22,10 @@
             <form method="dialog" class="form" id="form">
                 <button id="close-btn">x</button>
                 <p>Add new book</p>
-                <input type="text" name="title" id="title" placeholder="Title" required>
+                <p class="error-msg" id="error-msg">Your already have this book on your library.</p>
+                <input type="text" name="title" id="title" placeholder="Title" maxlength="19" required>
                 <input type="text" name="author" id="author" placeholder="Author" required>
-                <input type="number" name="pages" id="pages" placeholder="Pages" min="0" max="3000" required>
+                <input type="number" name="pages" id="pages" placeholder="Pages" min="0" max="5000" required>
                 <div class="checkbox-container">
                     <label for="read">Read</label>
                     <input type="checkbox" name="read" id="read">
