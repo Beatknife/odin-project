@@ -82,17 +82,40 @@ main > p {
 
 .card p {
     font-size: 1.5rem;
-    margin: 15px;
 }
 
 .card .title {
     text-transform: uppercase;
     font-weight: bold;
+    margin: 30px 10px 10px 10px;
+}
+
+.card .title::before {
+    content: "'";
+}
+
+.card .title:after {
+    content: "'";
 }
 
 .card .author {
     font-style: italic;
     text-transform: capitalize;
+    margin: 0 10px 10px 10px;
+}
+
+.card .author:before {
+    content: "by ";
+    font-style: normal;
+    text-transform: lowercase;
+}
+
+.card .pages {
+    margin: 0 10px 30px 10px;
+}
+
+.card .pages::after {
+    content: " pages";
 }
 
 .card button {
