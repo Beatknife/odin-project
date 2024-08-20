@@ -1,14 +1,23 @@
 const bookContainer = document.getElementById("book-container");
-const openModal = document.getElementById("add-btn")
+const addButton = document.getElementById("add-btn")
 const closeModal = document.getElementById("close-btn")
 const modal = document.getElementById("modal")
+let bookTitle = document.getElementById("title")
+const bookAuthor = document.getElementById("author")
+const bookPages = document.getElementById("pages")
+const bookRead = document.getElementById("read")
+const addBook = document.getElementById("add-book")
+const readButton = document.getElementById("read-btn")
+const removeButton = document.getElementById("remove-btn")
 
-openModal.addEventListener("click", () => {
+let myLibrary = [];
+
+addButton.addEventListener("click", () => {
     modal.showModal();
 })
 
 closeModal.addEventListener("click", () => {
-    modal.closest();
+    modal.close();
 })
 
 modal.addEventListener('click', (event) => {
@@ -17,25 +26,25 @@ modal.addEventListener('click', (event) => {
     }
 });
 
-const myLibrary = ["book1", "book2", "book3"];
-
-function Book(author, title, pages, isRead){
-    this.author = author,
+function Book(title, author, pages, isRead){
     this.title = title,
-    this.pages = pages
-    this.isRead = isRead
+    this.author = author,
+    this.pages = pages,
+    this.isRead = isRead;
 }
 
-function getUsersBook(){
-    const author = prompt("Author? ");
-    const title = prompt("Title? ");
-    const pages = Number(prompt("Pages? "));
-    const isRead = prompt("Did you read it? ")
-    const bookToAdd = new Book(author, title, pages, isRead);
+addBook.addEventListener("click", () => {
+    console.log("title: " + bookTitle.value);
+    console.log("auth: " + bookAuthor.value);
+    console.log("pages: " + bookPages.value);
+    console.log("isRead: " + bookRead.value);
+    const bookToAdd = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
+    console.log("title: " + bookToAdd.title);
+    console.log("auth: " + bookToAdd.author);
+    console.log("pages: " + bookToAdd.pages);
+    console.log("isRead: " + bookToAdd.isRead);
     myLibrary.push(bookToAdd);
-}
-
-// getUsersBook();
+})
 
 function addBookToLibrary(){
     for (let i = 0; i < myLibrary.length; i++) {
