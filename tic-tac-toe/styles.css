@@ -44,7 +44,7 @@ body {
     cursor: pointer;
 }
 
-.game-container .player-turn, .game-container .winner {
+.game-container .player-turn, .game-container .winner-display {
     font-size: 30px;
     font-weight: bold;
     margin: 0;
@@ -58,7 +58,7 @@ body {
     color: hsl(0, 100%, 55%);
 }
 
-.game-container .winner {
+.game-container .winner-display {
     color:rgb(51, 199, 149);
     display: none;
 }
