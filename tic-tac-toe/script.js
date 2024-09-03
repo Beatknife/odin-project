@@ -2,29 +2,22 @@ let board = [[' ', ' ', ' '],
              [' ', ' ', ' '],
              [' ', ' ', ' ']]
 
-let board1 = [['X', 'X', 'O'],
-              ['O', 'O', 'X'],
-              ['X', 'O', 'X']]
-
-let board2 = [['A', 'A', 'A', 'B'],
-              ['B', 'B', 'B', 'A'],
-              ['A', 'B', 'A', 'A'],
-              ['A', 'B', 'B', 'B']]
-
-initiateBoard(board)
 let currentPlayer = 'X'
+updateBoard(board)
+alert("This is a tic-tac-toe game that you can play on console. Press F12 to open console and write playGame() to play. To restart, write restartGame(). X plays first.")
 
-function initiateBoard(boardToDisplay) {
-    let result = ''
-    let firstRow = ''
-    for (let row = 0; row < boardToDisplay.length; row++) {
-        if (row < boardToDisplay.length) {
-            result += '\n'
-        } 
-        result += `${row + 1} ${boardToDisplay[row].join(' ')}`;
-        firstRow += ` ${row + 1}`
+function updateBoard(board) {
+    let result = '';
+    let firstRow = '';
+
+    for (let row = 0; row < board.length; row++) {
+        if (row < board.length) {
+            result += '\n';
+        }
+        result += `${row + 1} ${board[row].join(' ')}`;
+        firstRow += ` ${row + 1}`;
     }
-    console.log(` ${firstRow} ${result}`)
+    console.log(` ${firstRow} ${result}`);
 }
 
 function rowWinner(board) {
@@ -99,6 +92,39 @@ function checkWinner(board) {
     return false;
 }
 
-function playRound(board, player1, player2) {
+function playRound(board) {
+    let row = Number(prompt("Choose row 1-3: ")) - 1;
+    let col = Number(prompt("Choose column 1-3: ")) - 1;
 
+    if (board[row][col] === ' ') {
+        board[row][col] = currentPlayer;
+        updateBoard(board);
+        if (checkWinner(board)) {
+            console.log(`${currentPlayer} wins!`);
+            return true;
+        }
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    } else {
+        console.log("That cell is not empty!");
+    }
+    console.log(`${currentPlayer}'s turn: `);
+    return false;
+}
+
+function playGame() {
+    console.log(`${currentPlayer}'s turn: `);
+    for (let i = 0; i < board.length * board.length; i++) {
+        if (playRound(board)) {
+            return;
+        }
+    }
+    console.log("It's a draw.");
+}
+
+function restartGame() {
+    board = [[' ', ' ', ' '],
+             [' ', ' ', ' '],
+             [' ', ' ', ' ']]
+    updateBoard(board)
+    playGame()
 }

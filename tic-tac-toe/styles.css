@@ -32,8 +32,8 @@ body {
 }
 
 .cell {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     background-color: white;
     border: none;
     box-shadow: 0 0 0 5px rgb(63, 63, 63);
