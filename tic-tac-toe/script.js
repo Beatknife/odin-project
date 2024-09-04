@@ -4,7 +4,6 @@ let board = [[' ', ' ', ' '],
 
 let currentPlayer = 'X'
 updateBoard(board)
-alert("This is a tic-tac-toe game that you can play on console. Press F12 to open console and write playGame() to play. To restart, write restartGame(). X plays first.")
 
 function updateBoard(board) {
     let result = '';
