@@ -1,129 +1,100 @@
-let board = [[' ', ' ', ' '],
-             [' ', ' ', ' '],
-             [' ', ' ', ' ']]
+const cells = document.querySelectorAll(".cell");
+const playersTurn = document.getElementById("players-turn");
+const winnerDisplay = document.getElementById("winner-display");
+const restartBtn = document.getElementById("restart-btn");
 
-let currentPlayer = 'X'
-updateBoard(board)
+let board = ["", "", "", "", "", "", "", "", ""];
 
-function updateBoard(board) {
-    let result = '';
-    let firstRow = '';
+const winConditions = [[0, 1, 2],
+                       [3, 4, 5],
+                       [6, 7, 8],
+                       [0, 3, 6],
+                       [1, 4, 7],
+                       [2, 5, 8],
+                       [0, 4, 8],
+                       [2, 4, 6]]
 
-    for (let row = 0; row < board.length; row++) {
-        if (row < board.length) {
-            result += '\n';
-        }
-        result += `${row + 1} ${board[row].join(' ')}`;
-        firstRow += ` ${row + 1}`;
-    }
-    console.log(` ${firstRow} ${result}`);
+let currentPlayer = "X";
+let gameRunning = false;
+
+initializeGame();
+
+function initializeGame() {
+    cells.forEach(cell => cell.addEventListener("click", cellClicked));
+    playersTurn.textContent = `${currentPlayer}'s turn`
+    restartBtn.addEventListener("click", restartGame);
+    gameRunning = true;
 }
 
-function rowWinner(board) {
-    for (let i = 0; i < board.length; i++) {
-        let mark = board[i][0];
-        let allEqual = true;
-
-        for (let j = 0; j < board[i].length; j++) {
-            let cell = board[i][j];
-            if (cell !== mark || cell === ' ') {
-                allEqual = false;
-                break;
-            }
-        }
-
-        if (allEqual) {
-            return true;
-        }
+function cellClicked() {
+    const cellIndex = this.getAttribute("cellIndex");
+    
+    if (board[cellIndex] != "" || !gameRunning) {
+        return
     }
-    return false;
+    updateCell(this, cellIndex)
+    checkWinner()
 }
 
-function colWinner(board) {
-    for (let i = 0; i < board[0].length; i++) {
-        let mark = board[0][i];
-        let allEqual = true;
 
-        for (let j = 0; j < board.length; j++) {
-            let cell = board[j][i]
-            if (cell !== mark || cell === ' ') {
-                allEqual = false;
-                break;
-            }    
-        }
-
-        if (allEqual) {
-            return true;
-        }
-    }
-    return false;
+function updateCell(cell, index) {
+    board[index] = currentPlayer;
+    cell.textContent = currentPlayer;
 }
 
-function diagonalWinner(board) {
-    const topLeftMarker = board[0][0];
-    const topRightMarker = board[0][board.length - 1];
-    let topLeftDiagonalEqual = true;
-    let topRightDiagonalEqual = true;
-
-    for (let i = 0; i < board.length; i++) {
-        let cell = board[i][i];
-        if (cell !== topLeftMarker || cell === ' ') {
-            topLeftDiagonalEqual = false;
-            break;
-        }
-    }
-
-    for (let j = 0; j < board.length; j++) {
-        let cell = board[j][board.length - 1 - j];
-        if (cell !== topRightMarker || cell === ' ') {
-            topRightDiagonalEqual = false;
-            break;
-        }
-    }
-
-    return topLeftDiagonalEqual || topRightDiagonalEqual;
-}
-
-function checkWinner(board) {
-    if (rowWinner(board) || colWinner(board) || diagonalWinner(board)) {
-        return true;
-    }
-    return false;
-}
-
-function playRound(board) {
-    let row = Number(prompt("Choose row 1-3: ")) - 1;
-    let col = Number(prompt("Choose column 1-3: ")) - 1;
-
-    if (board[row][col] === ' ') {
-        board[row][col] = currentPlayer;
-        updateBoard(board);
-        if (checkWinner(board)) {
-            console.log(`${currentPlayer} wins!`);
-            return true;
-        }
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+function changePlayer() {
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    
+    if (currentPlayer === "X") {
+        playersTurn.classList.remove("player-two");
+        playersTurn.classList.add("player-one");
     } else {
-        console.log("That cell is not empty!");
+        playersTurn.classList.remove("player-one");
+        playersTurn.classList.add("player-two");
     }
-    console.log(`${currentPlayer}'s turn: `);
-    return false;
+
+    playersTurn.textContent = `${currentPlayer}'s turn`;
 }
 
-function playGame() {
-    console.log(`${currentPlayer}'s turn: `);
-    for (let i = 0; i < board.length * board.length; i++) {
-        if (playRound(board)) {
-            return;
+function checkWinner() {
+    let roundWon = false;
+
+    for (let i = 0; i < winConditions.length; i++) {
+        const condition = winConditions[i]
+        const cellA = board[condition[0]]
+        const cellB = board[condition[1]]
+        const cellC = board[condition[2]]
+        
+        if (cellA == "" || cellB == "" || cellC == "") {
+            continue;
+        }
+        if (cellA == cellB && cellB == cellC) {
+            roundWon = true;
+            break;
         }
     }
-    console.log("It's a draw.");
+    if (roundWon) {
+        winnerDisplay.style.display = "block";
+        winnerDisplay.textContent = `${currentPlayer}' is winner!`;
+        currentPlayer = currentPlayer === "X" ? winnerDisplay.style.color = "hsl(240, 100%, 55%)" : winnerDisplay.style.color = "hsl(0, 100%, 55%)"
+        gameRunning = false;
+    }
+    else if(!board.includes("")){
+        winnerDisplay.style.display = "block"
+        winnerDisplay.textContent = `It's a draw!`;
+        winnerDisplay.style.color = "rgb(117, 117, 117)"
+        running = false;
+    }
+    else {
+        changePlayer();
+    }
 }
 
 function restartGame() {
-    board = [[' ', ' ', ' '],
-             [' ', ' ', ' '],
-             [' ', ' ', ' ']]
-    updateBoard(board)
-    playGame()
+    currentPlayer = "X";
+    board = ["", "", "", "", "", "", "", "", ""];
+    playersTurn.textContent = `${currentPlayer}'s turn`;
+    cells.forEach(cell => cell.textContent = "");
+    gameRunning = true;
+    winnerDisplay.style.display = "none";
 }
