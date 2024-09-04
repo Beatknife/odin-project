@@ -1,100 +1,114 @@
-const cells = document.querySelectorAll(".cell");
-const playersTurn = document.getElementById("players-turn");
-const winnerDisplay = document.getElementById("winner-display");
-const restartBtn = document.getElementById("restart-btn");
+const Gameboard = (() => {
+    let board = ["", "", "", "", "", "", "", "", ""];
 
-let board = ["", "", "", "", "", "", "", "", ""];
+    const getBoard = () => board;
 
-const winConditions = [[0, 1, 2],
-                       [3, 4, 5],
-                       [6, 7, 8],
-                       [0, 3, 6],
-                       [1, 4, 7],
-                       [2, 5, 8],
-                       [0, 4, 8],
-                       [2, 4, 6]]
+    const updateBoard = (index, marker) => {
+        board[index] = marker;
+    };
 
-let currentPlayer = "X";
-let gameRunning = false;
+    const resetBoard = () => {
+        board = ["", "", "", "", "", "", "", "", ""];
+    };
 
-initializeGame();
+    return {
+        getBoard,
+        updateBoard,
+        resetBoard,
+    };
+})();
 
-function initializeGame() {
-    cells.forEach(cell => cell.addEventListener("click", cellClicked));
-    playersTurn.textContent = `${currentPlayer}'s turn`
-    restartBtn.addEventListener("click", restartGame);
-    gameRunning = true;
-}
+const Player = (name, marker) => {
+    return { name, marker };
+};
 
-function cellClicked() {
-    const cellIndex = this.getAttribute("cellIndex");
-    
-    if (board[cellIndex] != "" || !gameRunning) {
-        return
-    }
-    updateCell(this, cellIndex)
-    checkWinner()
-}
+const GameController = (() => {
+    const playerOne = Player("X", "X");
+    const playerTwo = Player("O", "O");
+    let currentPlayer = playerOne;
+    let gameRunning = true;
 
+    const cells = document.querySelectorAll(".cell");
+    const playersTurn = document.getElementById("players-turn");
+    const winnerDisplay = document.getElementById("winner-display");
+    const restartBtn = document.getElementById("restart-btn");
 
-function updateCell(cell, index) {
-    board[index] = currentPlayer;
-    cell.textContent = currentPlayer;
-}
+    const winConditions = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
 
-function changePlayer() {
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
-    
-    if (currentPlayer === "X") {
-        playersTurn.classList.remove("player-two");
-        playersTurn.classList.add("player-one");
-    } else {
-        playersTurn.classList.remove("player-one");
-        playersTurn.classList.add("player-two");
-    }
+    const initializeGame = () => {
+        cells.forEach(cell => cell.addEventListener("click", handleCellClick));
+        restartBtn.addEventListener("click", restartGame);
+        updateTurnDisplay();
+    };
 
-    playersTurn.textContent = `${currentPlayer}'s turn`;
-}
+    const handleCellClick = (event) => {
+        const cellIndex = event.target.getAttribute("cellIndex");
 
-function checkWinner() {
-    let roundWon = false;
-
-    for (let i = 0; i < winConditions.length; i++) {
-        const condition = winConditions[i]
-        const cellA = board[condition[0]]
-        const cellB = board[condition[1]]
-        const cellC = board[condition[2]]
-        
-        if (cellA == "" || cellB == "" || cellC == "") {
-            continue;
+        if (Gameboard.getBoard()[cellIndex] !== "" || !gameRunning) {
+            return;
         }
-        if (cellA == cellB && cellB == cellC) {
-            roundWon = true;
-            break;
-        }
-    }
-    if (roundWon) {
-        winnerDisplay.style.display = "block";
-        winnerDisplay.textContent = `${currentPlayer}' is winner!`;
-        currentPlayer = currentPlayer === "X" ? winnerDisplay.style.color = "hsl(240, 100%, 55%)" : winnerDisplay.style.color = "hsl(0, 100%, 55%)"
-        gameRunning = false;
-    }
-    else if(!board.includes("")){
-        winnerDisplay.style.display = "block"
-        winnerDisplay.textContent = `It's a draw!`;
-        winnerDisplay.style.color = "rgb(117, 117, 117)"
-        running = false;
-    }
-    else {
-        changePlayer();
-    }
-}
 
-function restartGame() {
-    currentPlayer = "X";
-    board = ["", "", "", "", "", "", "", "", ""];
-    playersTurn.textContent = `${currentPlayer}'s turn`;
-    cells.forEach(cell => cell.textContent = "");
-    gameRunning = true;
-    winnerDisplay.style.display = "none";
-}
+        Gameboard.updateBoard(cellIndex, currentPlayer.marker);
+        event.target.textContent = currentPlayer.marker;
+
+        if (checkWinner()) {
+            gameRunning = false;
+            winnerDisplay.style.display = "block";
+            winnerDisplay.textContent = `${currentPlayer.name} is the winner!`;
+            winnerDisplay.style.color = currentPlayer.marker === "X" ? "hsl(240, 100%, 55%)" : "hsl(0, 100%, 55%)";
+        } else if (checkDraw()) {
+            gameRunning = false;
+            winnerDisplay.style.display = "block";
+            winnerDisplay.textContent = "It's a draw!";
+            winnerDisplay.style.color = "rgb(117, 117, 117)";
+        } else {
+            changePlayer();
+            updateTurnDisplay();
+        }
+    };
+
+    const checkWinner = () => {
+        return winConditions.some(condition => {
+            const [a, b, c] = condition;
+            return Gameboard.getBoard()[a] && Gameboard.getBoard()[a] === Gameboard.getBoard()[b] && Gameboard.getBoard()[a] === Gameboard.getBoard()[c];
+        });
+    };
+
+    const checkDraw = () => {
+        return !Gameboard.getBoard().includes("");
+    };
+
+    const changePlayer = () => {
+        currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
+    };
+
+    const updateTurnDisplay = () => {
+        playersTurn.textContent = `${currentPlayer.name}'s turn`;
+        if (currentPlayer.marker === "X") {
+            playersTurn.classList.remove("player-two");
+            playersTurn.classList.add("player-one");
+        } else {
+            playersTurn.classList.remove("player-one");
+            playersTurn.classList.add("player-two");
+        }
+    };
+
+    const restartGame = () => {
+        Gameboard.resetBoard();
+        cells.forEach(cell => cell.textContent = "");
+        gameRunning = true;
+        winnerDisplay.style.display = "none";
+        currentPlayer = playerOne;
+        updateTurnDisplay();
+    };
+
+    return {
+        initializeGame,
+    };
+})();
+
+GameController.initializeGame();
