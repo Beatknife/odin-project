@@ -34,7 +34,7 @@ bookTitle.addEventListener("input", () => {
     errorMsg.style.display = "none";
 })
 
-function Book(title, author, pages, isRead){
+function Book(title, author, pages, isRead) {
     this.title = title,
     this.author = author,
     this.pages = pages,
@@ -42,7 +42,6 @@ function Book(title, author, pages, isRead){
 }
 
 addBook.addEventListener("click", (e) => {
-
     e.preventDefault(); 
     if (form.checkValidity()) {
         const title = bookTitle.value.trim();
@@ -69,7 +68,7 @@ addBook.addEventListener("click", (e) => {
     }
 })
 
-function displayBookCard(){
+function displayBookCard() {
     const bookToAdd = myLibrary[myLibrary.length - 1];
     const readStatus = bookToAdd.isRead ? "Read" : "Not Read";
     const isReadChecked = bookToAdd.isRead ? "read-btn" : "not-read-btn";
